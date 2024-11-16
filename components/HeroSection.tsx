@@ -70,7 +70,7 @@ export default function HeroSection() {
     }, [])
 
     return (
-        <div className="relative min-h-screen flex flex-col gap-8 md:flex-row items-center justify-center overflow-hidden bg-gray-900">
+        <div className="relative min-h-screen flex flex-col gap-8 md:flex-row-reverse items-center justify-center overflow-hidden bg-gray-900">
             <canvas
                 ref={canvasRef}
                 className="absolute inset-0 w-full h-full"
