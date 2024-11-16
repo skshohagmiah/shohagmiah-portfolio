@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Code, Globe, Database, Terminal, Cpu, TrendingUp, Layers, Lock, Cloud, Palette } from 'lucide-react'
+import { Code, Globe, Database, Terminal, Cpu, Layers, Lock, Cloud, Palette } from 'lucide-react'
 
 const skills = [
   {
@@ -115,18 +115,18 @@ const SkillCard = ({ icon: Icon, title, description, details }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+      className="dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden"
     >
       <div 
         className="p-6 cursor-pointer" 
         onClick={() => setIsOpen(!isOpen)}
       >
         <div className="flex items-center mb-4">
-          <Icon className="w-8 h-8 text-blue-500 mr-3" />
+          <Icon className="w-8 h-8 text-purple-500 mr-3" />
           <h3 className="text-xl font-semibold text-white">{title}</h3>
         </div>
-        <p className="text-gray-400 mb-2">{description}</p>
-        <p className="text-blue-400 text-sm">
+        <p className="text-gray-900 dark:text-gray-400 mb-2">{description}</p>
+        <p className="text-purple-400 text-sm">
           {isOpen ? 'Click to collapse' : 'Click to expand'}
         </p>
       </div>
@@ -153,7 +153,7 @@ const SkillCard = ({ icon: Icon, title, description, details }) => {
 
 export default function SkillsSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800">
+    <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -161,8 +161,8 @@ export default function SkillsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Skills & Expertise</h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold dark:text-white mb-4">Skills & Expertise</h2>
+          <p className=" text-gray-600 dark:text-gray-400 text-base max-w-3xl mx-auto">
             With 2 years of hands-on experience in web development and a passion for continuous learning, 
             I've cultivated a diverse skill set that enables me to create efficient, scalable, and user-friendly digital solutions.
           </p>

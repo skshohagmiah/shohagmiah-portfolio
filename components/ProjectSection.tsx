@@ -36,7 +36,7 @@ const ProjectCard = ({ project, isSelected, onClick }) => (
   <motion.div
     layout
     onClick={onClick}
-    className={`bg-gray-800 rounded-lg shadow-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+    className={`dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden cursor-pointer transition-all duration-300 ${
       isSelected ? 'col-span-2 row-span-2' : ''
     }`}
     whileHover={{ scale: 1.02 }}
@@ -53,10 +53,10 @@ const ProjectCard = ({ project, isSelected, onClick }) => (
     </div>
     <div className="p-6">
       <h3 className="text-xl font-semibold text-white mb-2">{project.title}</h3>
-      <p className="text-gray-400 mb-4">{project.description}</p>
+      <p className="text-gray-900 dark:text-gray-400 mb-4">{project.description}</p>
       <div className="flex flex-wrap gap-2 mb-4">
         {project.tags.map((tag, index) => (
-          <span key={index} className="bg-blue-500 text-white text-xs px-2 py-1 rounded">
+          <span key={index} className="bg-purple-500 text-white text-xs px-2 py-1 rounded">
             {tag}
           </span>
         ))}
@@ -66,7 +66,7 @@ const ProjectCard = ({ project, isSelected, onClick }) => (
           href={project.liveLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
+          className="flex items-center text-purple-400 hover:text-purple-300 transition-colors duration-300"
         >
           <ExternalLink size={18} className="mr-1" />
           Live Demo
@@ -75,7 +75,7 @@ const ProjectCard = ({ project, isSelected, onClick }) => (
           href={project.githubLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
+          className="flex items-center text-purple-400 hover:text-purple-300 transition-colors duration-300"
         >
           <GitHub size={18} className="mr-1" />
           GitHub
@@ -89,7 +89,7 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null)
 
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-800 to-gray-900">
+    <section className="py-20 bg-gradient-to-b dark:from-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -97,8 +97,8 @@ export default function ProjectsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Featured Projects</h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold dark:text-white mb-4">Featured Projects</h2>
+          <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Explore a selection of my recent projects, showcasing my skills in web development,
             problem-solving, and creating user-centric applications.
           </p>
@@ -123,7 +123,7 @@ export default function ProjectsSection() {
         >
           <a
             href="/projects"
-            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors duration-300"
+            className="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors duration-300"
           >
             View All Projects
             <ChevronRight size={20} className="ml-1" />

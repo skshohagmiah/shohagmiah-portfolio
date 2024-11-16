@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Menu, X, Home, User, Briefcase, BookOpen, Mail } from 'lucide-react'
+import { ModeToggle } from './ModeToggle'
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -12,17 +13,17 @@ export default function Header() {
   const navItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'About', href: '/about', icon: User },
-    { name: 'Projects', href: '/projects', icon: Briefcase },
+    { name: 'Works', href: '/works', icon: Briefcase },
     { name: 'Blog', href: '/blog', icon: BookOpen },
     { name: 'Contact', href: '/contact', icon: Mail },
   ]
 
   return (
-    <header className="bg-gray-900 text-gray-100 shadow-lg sticky top-0 z-50">
+    <header className=" shadow-lg sticky top-0 z-50 bg-white dark:bg-gray-900">
       <div className="max-w-screen-xl  mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-bold text-blue-400 transition-colors duration-200 hover:text-blue-300">
+            <Link href="/" className="text-2xl font-bold text-purple-400 transition-colors duration-200 hover:text-purple-300">
               Shohag Miah
             </Link>
           </div>
@@ -32,19 +33,20 @@ export default function Header() {
                 <li key={item.name}>
                   <Link 
                     href={item.href} 
-                    className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors duration-200"
+                    className="flex items-center px-3 py-2 rounded-md text-sm font-medium  hover:bg-gray-200 transition-colors duration-200"
                   >
                     <item.icon className="w-4 h-4 mr-2" />
                     {item.name}
                   </Link>
                 </li>
               ))}
+            <ModeToggle />
             </ul>
           </nav>
           <div className="flex items-center md:hidden">
             <button
               onClick={toggleMenu}
-              className="md:hidden p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 transition-colors duration-200"
+              className="md:hidden p-2 rounded-md  transition-colors duration-200"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -59,7 +61,7 @@ export default function Header() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="flex items-center px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700 transition-colors duration-200"
+                  className="flex items-center px-3 py-2 rounded-md text-base font-medium  transition-colors duration-200"
                   onClick={toggleMenu}
                 >
                   <item.icon className="w-5 h-5 mr-3" />
@@ -68,6 +70,7 @@ export default function Header() {
               </li>
             ))}
           </ul>
+          
         </div>
       )}
     </header>

@@ -7,7 +7,7 @@ const AnimatedProfileImage = () => {
     <div className="relative w-[400px] h-[400px]">
       {/* Rotating border effect */}
       <motion.div
-        className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+        className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-purple-500 to-pink-500"
         animate={{
           rotate: 360,
         }}
