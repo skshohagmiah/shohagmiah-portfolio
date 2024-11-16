@@ -17,7 +17,7 @@ const projects = [
   {
     title: 'Task Management App',
     description: 'A responsive web application for efficient task organization and team collaboration.',
-    image: '/placeholder.svg?height=400&width=600',
+    image: '/placeholder.png',
     tags: ['Vue.js', 'Express', 'PostgreSQL', 'Socket.io'],
     liveLink: 'https://example-taskmanager.com',
     githubLink: 'https://github.com/yourusername/task-manager',
@@ -25,7 +25,7 @@ const projects = [
   {
     title: 'Weather Forecast Dashboard',
     description: 'An interactive dashboard displaying real-time weather data and forecasts using external APIs.',
-    image: '/placeholder.svg?height=400&width=600',
+    image: '/placeholder.png',
     tags: ['React', 'Redux', 'Chart.js', 'OpenWeatherMap API'],
     liveLink: 'https://example-weatherapp.com',
     githubLink: 'https://github.com/yourusername/weather-dashboard',
