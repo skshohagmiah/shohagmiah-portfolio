@@ -152,17 +152,17 @@ export default function HeroSection() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="flex justify-center space-x-4"
+                    className="flex justify-center items-center space-x-4"
                 >
                     <a
                         href="#projects"
-                        className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-8 rounded-full  transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         View Projects
                     </a>
                     <a
                         href="#contact"
-                        className="bg-transparent border-2 border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white font-bold py-3 px-6 rounded-full text-lg transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-transparent border-2 border-purple-500 text-purple-500 hover:bg-purple-500 hover:text-white font-bold py-2 px-8 rounded-full transition duration-300 ease-in-out transform hover:scale-105"
                     >
                         Get in Touch
                     </a>

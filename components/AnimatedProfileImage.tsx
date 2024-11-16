@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const AnimatedProfileImage = () => {
   return (
-    <div className="relative w-[400px] h-[400px]">
+    <div className="relative w-[310px] h-[310px]">
       {/* Rotating border effect */}
       <motion.div
         className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-purple-500 to-pink-500"
@@ -37,8 +37,8 @@ const AnimatedProfileImage = () => {
         <Image 
           src="/me.webp"
           alt="shohag miah"
-          width={380}
-          height={380}
+          width={300}
+          height={300}
           className="rounded-full object-cover"
         />
       </div>

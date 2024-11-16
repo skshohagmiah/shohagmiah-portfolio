@@ -28,7 +28,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
+    <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 w-full">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -42,14 +42,14 @@ export default function ContactSection() {
           </p>
         </motion.div>
         <hr className='my-8 dark:bg-slate-500'/>
-        <div className="flex flex-col md:flex-row items-start justify-center gap-16">
+        <div className="flex flex-col md:flex-row md:items-start items-center justify-center gap-16 w-full">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className="text-2xl font-semibold dark:text-white mb-6">Contact Information</h3>
-            <div className="space-y-4">
+            <div className="space-y-4 w-full">
               <div className="flex items-center dark:text-gray-300">
                 <Mail className="w-6 h-6 mr-3 text-purple-500" />
                 <span>shohag.miah@example.com</span>
@@ -91,7 +91,7 @@ export default function ContactSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <form onSubmit={handleSubmit} className="space-y-6 lg:min-w-[600px] w-full">
-              <div>
+              <div className='w-full'>
                 <label htmlFor="name" className="block text-sm font-medium dark:text-gray-300">
                   Name
                 </label>
