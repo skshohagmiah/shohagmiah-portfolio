@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes'
 
 const GRID_WIDTH = 80
 const GRID_HEIGHT = 40
-const NUMBER_OF_BEAMS = 20
+const NUMBER_OF_BEAMS = 30
 
 class Beam {
     x: number

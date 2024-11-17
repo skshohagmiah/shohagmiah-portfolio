@@ -123,7 +123,7 @@ const SkillCard = ({ icon: Icon, title, description, details }) => {
       >
         <div className="flex items-center mb-4">
           <Icon className="w-8 h-8 text-purple-500 mr-3" />
-          <h3 className="text-xl font-semibold text-white">{title}</h3>
+          <h3 className="text-xl font-semibold dark:text-white">{title}</h3>
         </div>
         <p className="text-gray-900 dark:text-gray-400 mb-2">{description}</p>
         <p className="text-purple-400 text-sm">
