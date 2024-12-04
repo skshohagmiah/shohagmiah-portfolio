@@ -12,9 +12,9 @@ export default function Header() {
   const navItems = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'About', href: '/about', icon: User },
-    { name: 'Works', href: '/works', icon: Briefcase },
+    { name: 'Works', href: '/#works', icon: Briefcase },
     { name: 'Blog', href: '/blog', icon: BookOpen },
-    { name: 'Contact', href: '/contact', icon: Mail },
+    { name: 'Contact', href: '/#contact', icon: Mail },
   ]
 
   return (

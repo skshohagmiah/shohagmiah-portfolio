@@ -5,7 +5,7 @@ import { ArrowRight, Clock } from 'lucide-react'
 import Image from "next/image"
 import Link from "next/link"
 
-export default function HomeBlogSection() {
+export default function Homeblogsection() {
   const blogPosts = [
     {
       title: "10 Essential JavaScript Concepts Every Developer Should Know",

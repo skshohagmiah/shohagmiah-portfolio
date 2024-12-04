@@ -28,7 +28,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 w-full">
+    <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 w-full" id='contact'>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

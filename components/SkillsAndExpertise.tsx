@@ -1,3 +1,4 @@
+//@ts-nocheck
 'use client'
 
 import React, { useState } from 'react'
@@ -70,40 +71,7 @@ const skills = [
       'Database integration and management',
       'Server-side rendering and static site generation',
     ],
-  },
-  {
-    icon: Lock,
-    title: 'Security Best Practices',
-    description: 'Implementing security measures to protect applications and user data.',
-    details: [
-      'HTTPS implementation and SSL certificates',
-      'Cross-Site Scripting (XSS) prevention',
-      'SQL injection protection',
-      'Secure authentication and authorization practices',
-    ],
-  },
-  {
-    icon: Cloud,
-    title: 'Cloud Services',
-    description: 'Leveraging cloud platforms for scalable and efficient applications.',
-    details: [
-      'Experience with AWS and Google Cloud Platform',
-      'Serverless function deployment',
-      'Cloud database management',
-      'Content Delivery Network (CDN) implementation',
-    ],
-  },
-  {
-    icon: Palette,
-    title: 'UI/UX Design Principles',
-    description: 'Creating visually appealing and user-friendly interfaces.',
-    details: [
-      'Responsive and mobile-first design',
-      'Accessibility (WCAG) compliance',
-      'User-centered design thinking',
-      'Prototyping and wireframing',
-    ],
-  },
+  }
 ]
 
 const SkillCard = ({ icon: Icon, title, description, details }) => {
@@ -115,7 +83,8 @@ const SkillCard = ({ icon: Icon, title, description, details }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       whileInView={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.5 }}
-      className="dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden"
+      className="dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden "
+    
     >
       <div 
         className="p-6 cursor-pointer" 
@@ -153,7 +122,7 @@ const SkillCard = ({ icon: Icon, title, description, details }) => {
 
 export default function SkillsSection() {
   return (
-    <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800">
+    <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 "   >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

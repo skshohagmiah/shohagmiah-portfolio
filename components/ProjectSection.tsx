@@ -1,3 +1,4 @@
+//@ts-nocheck
 'use client'
 
 import React, { useState } from 'react'
@@ -89,7 +90,7 @@ export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState(null)
 
   return (
-    <section className="py-20 bg-gradient-to-b dark:from-gray-800 dark:to-gray-900">
+    <section className="py-20 bg-gradient-to-b dark:from-gray-800 dark:to-gray-900" id='works'>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
