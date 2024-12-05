@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/components/Theme-Provider";
+import { Toaster } from "sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -37,9 +38,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Toaster position="top-right"/>
           <Header />
           {children}
           <Footer />
+
         </ThemeProvider>
       </body>
     </html>

@@ -94,7 +94,7 @@ const SkillCard = ({ icon: Icon, title, description, details }) => {
           <Icon className="w-8 h-8 text-purple-500 mr-3" />
           <h3 className="text-xl font-semibold dark:text-white">{title}</h3>
         </div>
-        <p className="text-gray-900 dark:text-gray-400 mb-2">{description}</p>
+        <p className="text-gray-900 dark:text-gray-300 mb-2">{description}</p>
         <p className="text-purple-400 text-sm">
           {isOpen ? 'Click to collapse' : 'Click to expand'}
         </p>
@@ -108,7 +108,7 @@ const SkillCard = ({ icon: Icon, title, description, details }) => {
             transition={{ duration: 0.3 }}
             className="px-6 pb-6"
           >
-            <ul className="list-disc list-inside text-gray-400">
+            <ul className="list-disc list-inside">
               {details.map((detail, index) => (
                 <li key={index} className="mb-1">{detail}</li>
               ))}

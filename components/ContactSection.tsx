@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Send } from 'lucide-react'
+import { toast } from 'sonner'
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -19,13 +20,31 @@ export default function ContactSection() {
     }))
   }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    // Here you would typically send the form data to your server or a service like Formspree
-    console.log('Form submitted:', formData)
-    // Reset form after submission
-    setFormData({ name: '', email: '', message: '' })
-  }
+  const handleSubmit = async (e:any) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        toast('Email sent successfully!');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        toast(result.error || 'Failed to send email.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      toast('An error occurred while sending the email.');
+    }
+  };
 
   return (
     <section className="py-20 bg-gradient-to-b dark:from-gray-900 dark:to-gray-800 w-full" id='contact'>
@@ -41,7 +60,7 @@ export default function ContactSection() {
             I'm always open to new opportunities and collaborations. Feel free to reach out!
           </p>
         </motion.div>
-        <hr className='my-8 dark:bg-slate-500'/>
+        <hr className='my-8 dark:bg-slate-500' />
         <div className="flex flex-col md:flex-row md:items-start items-center justify-center gap-16 w-full">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -52,15 +71,15 @@ export default function ContactSection() {
             <div className="space-y-4 w-full">
               <div className="flex items-center dark:text-gray-300">
                 <Mail className="w-6 h-6 mr-3 text-purple-500" />
-                <span>shohag.miah@example.com</span>
+                <span>shohagmiah2100@gmail.com</span>
               </div>
               <div className="flex items-center dark:text-gray-300">
                 <Phone className="w-6 h-6 mr-3 text-purple-500" />
-                <span>+1 (555) 123-4567</span>
+                <span>+880-1865905625</span>
               </div>
               <div className="flex items-center dark:text-gray-300">
                 <MapPin className="w-6 h-6 mr-3 text-purple-500" />
-                <span>New York City, NY</span>
+                <span>Gazipur , Dhaka, Bangladesh</span>
               </div>
             </div>
             <div className="mt-8">
