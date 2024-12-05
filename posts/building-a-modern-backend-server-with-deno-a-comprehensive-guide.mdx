@@ -1,0 +1,266 @@
+---
+title: 'Building a Modern Backend Server with Deno : A Comprehensive Guide'
+date: '2024-12-05'
+category: Deno
+excerpt: >-
+  Deno has emerged as a powerful, secure alternative to Node.js, offering a
+  fresh approach to server-side JavaScript and TypeScript development. With the
+  release of Deno V2, developers now have an even more robust and feature-rich
+  platform for creating backend servers.
+readTime: '6'
+image: >-
+  https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+---
+# Building a Modern Backend Server with Deno : A Comprehensive Guide
+
+Deno has emerged as a powerful, secure alternative to Node.js, offering a fresh approach to server-side JavaScript and TypeScript development. With the release of Deno V2, developers now have an even more robust and feature-rich platform for creating backend servers.
+
+This comprehensive guide will walk you through creating a full-featured backend server using Deno V2, covering everything from basic routing to advanced middleware and database integration.
+
+---
+
+## Why Deno V2?
+
+Deno V2 brings several key improvements:
+- Enhanced security model
+- First-class TypeScript support
+- Built-in testing framework
+- Improved performance
+- Simplified dependency management
+- Native support for modern JavaScript features
+
+## Getting Started
+
+### Installation
+
+```bash
+# Install Deno
+curl -fsSL https://deno.land/install.sh | sh
+
+# Verify installation
+deno --version
+```
+
+## Creating a Basic HTTP Server
+
+```typescript
+import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
+
+async function handler(req: Request): Promise<Response> {
+  return new Response("Hello, Deno V2!", {
+    status: 200,
+    headers: { "content-type": "text/plain" }
+  });
+}
+
+console.log("Listening on http://localhost:8000");
+serve(handler, { port: 8000 });
+```
+
+## Advanced Routing with Oak Middleware
+
+```typescript
+import { Application, Router } from "https://deno.land/x/oak@v12.6.1/mod.ts";
+
+const app = new Application();
+const router = new Router();
+
+// Middleware for logging
+app.use(async (ctx, next) => {
+  console.log(`${new Date().toISOString()} - ${ctx.request.method} ${ctx.request.url}`);
+  await next();
+});
+
+// User routes
+router
+  .get("/users", (ctx) => {
+    ctx.response.body = [
+      { id: 1, name: "Alice" },
+      { id: 2, name: "Bob" }
+    ];
+  })
+  .post("/users", async (ctx) => {
+    const { value } = await ctx.request.body({ type: "json" });
+    const newUser = await value;
+    
+    ctx.response.status = 201;
+    ctx.response.body = {
+      message: "User created",
+      user: newUser
+    };
+  });
+
+app.use(router.routes());
+app.use(router.allowedMethods());
+
+console.log("Server running on http://localhost:8000");
+await app.listen({ port: 8000 });
+```
+
+## Database Integration with MongoDB
+
+```typescript
+import { MongoClient } from "https://deno.land/x/mongo@v0.31.2/mod.ts";
+
+class UserRepository {
+  private client: MongoClient;
+  private db: Database;
+  private users: Collection;
+
+  constructor() {
+    this.client = new MongoClient();
+    this.connect();
+  }
+
+  async connect() {
+    this.client = await MongoClient.connect("mongodb://localhost:27017");
+    this.db = this.client.database("myapp");
+    this.users = this.db.collection("users");
+  }
+
+  async findAll() {
+    return await this.users.find().toArray();
+  }
+
+  async create(user: any) {
+    return await this.users.insertOne(user);
+  }
+}
+```
+
+## Authentication with JWT
+
+```typescript
+import { create, verify } from "https://deno.land/x/djwt@v3.0.1/mod.ts";
+
+const KEY = "your-secret-key";
+
+async function generateToken(user: any) {
+  return await create(
+    { alg: "HS512", typ: "JWT" },
+    { 
+      sub: user.id,
+      name: user.name,
+      exp: new Date().getTime() + 60_000 // 1 minute expiration
+    },
+    KEY
+  );
+}
+
+async function authenticateMiddleware(ctx: any, next: any) {
+  const token = ctx.request.headers.get("Authorization")?.split(" ")[1];
+  
+  if (!token) {
+    ctx.response.status = 401;
+    ctx.response.body = { error: "No token provided" };
+    return;
+  }
+
+  try {
+    const payload = await verify(token, KEY);
+    ctx.state.user = payload;
+    await next();
+  } catch (err) {
+    ctx.response.status = 401;
+    ctx.response.body = { error: "Invalid token" };
+  }
+}
+```
+
+## Environment Configuration
+
+```typescript
+import { config } from "https://deno.land/x/dotenv@v3.2.2/mod.ts";
+
+// Load environment variables
+const env = await config({
+  path: './.env',
+  example: './.env.example'
+});
+
+const SERVER_CONFIG = {
+  PORT: Number(env.PORT || 8000),
+  DATABASE_URL: env.DATABASE_URL,
+  JWT_SECRET: env.JWT_SECRET
+};
+```
+
+## Error Handling and Validation
+
+```typescript
+import { z } from "https://deno.land/x/zod@v3.22.4/mod.ts";
+
+// User input validation
+const UserSchema = z.object({
+  name: z.string().min(2).max(50),
+  email: z.string().email(),
+  age: z.number().min(18).max(100)
+});
+
+function validateUser(data: unknown) {
+  try {
+    return UserSchema.parse(data);
+  } catch (error) {
+    throw new Error(`Validation failed: ${error.message}`);
+  }
+}
+```
+
+## Comprehensive Server Setup
+
+```typescript
+import { Application } from "https://deno.land/x/oak@v12.6.1/mod.ts";
+import { oakCors } from "https://deno.land/x/cors@v1.2.2/mod.ts";
+
+const app = new Application();
+
+// Global Middleware
+app.use(oakCors());
+app.use(errorHandler);
+
+// Routes
+const apiRouter = new Router({ prefix: "/api/v1" });
+apiRouter
+  .get("/health", (ctx) => {
+    ctx.response.body = { status: "healthy" };
+  })
+  .use(userRoutes.routes())
+  .use(authRoutes.routes());
+
+app.use(apiRouter.routes());
+app.use(apiRouter.allowedMethods());
+
+// Error Handling Middleware
+async function errorHandler(ctx: any, next: any) {
+  try {
+    await next();
+  } catch (err) {
+    ctx.response.status = err.status || 500;
+    ctx.response.body = {
+      error: err.message,
+      stack: Deno.env.get("DENO_ENV") === "development" ? err.stack : undefined
+    };
+  }
+}
+
+// Start Server
+const PORT = 8000;
+console.log(`Server running on http://localhost:${PORT}`);
+await app.listen({ port: PORT });
+```
+
+## Best Practices and Recommendations
+
+1. **Security First**: Leverage Deno's security model
+2. **Use TypeScript**: Take advantage of type checking
+3. **Minimal Dependencies**: Prefer standard library and minimal external modules
+4. **Environment Configuration**: Use `.env` for sensitive configurations
+5. **Comprehensive Error Handling**: Implement robust error management
+
+## Conclusion
+
+Deno V2 represents a significant leap forward in server-side JavaScript development. By providing a secure, performant, and developer-friendly environment, it offers a compelling alternative to traditional Node.js backends.
+
+The ecosystem is rapidly evolving, with growing community support and continuous improvements. As you explore Deno, you'll discover its potential to simplify and enhance your backend development workflow.
+
+**Happy Coding!**

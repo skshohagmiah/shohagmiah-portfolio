@@ -40,9 +40,9 @@ export default function CreateBlogPost() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Create New Blog Post</h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="max-w-5xl mx-auto px-4 py-8 ">
+      <h1 className="text-3xl font-bold mb-6 text-center">Create New Blog Post</h1>
+      <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-4 border p-4 rounded-md" >
         <div>
           <Label htmlFor="title">Title</Label>
           <Input
@@ -52,7 +52,7 @@ export default function CreateBlogPost() {
             required
           />
         </div>
-        <div>
+        <div className="">
           <Label htmlFor="category">Category</Label>
           <Input
             id="category"
@@ -61,12 +61,13 @@ export default function CreateBlogPost() {
             required
           />
         </div>
-        <div>
-          <Label htmlFor="excerpt">Excerpt</Label>
-          <Textarea
-            id="excerpt"
-            value={excerpt}
-            onChange={(e) => setExcerpt(e.target.value)}
+
+        <div className="">
+          <Label htmlFor="image">Image URL</Label>
+          <Input
+            id="image"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
             required
           />
         </div>
@@ -79,16 +80,16 @@ export default function CreateBlogPost() {
             required
           />
         </div>
-        <div>
-          <Label htmlFor="image">Image URL</Label>
-          <Input
-            id="image"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+        <div className="col-span-2">
+          <Label htmlFor="excerpt">Excerpt</Label>
+          <Textarea
+            id="excerpt"
+            value={excerpt}
+            onChange={(e) => setExcerpt(e.target.value)}
             required
           />
         </div>
-        <div>
+        <div className="col-span-2">
           <Label htmlFor="content">Content (Markdown)</Label>
           <Textarea
             id="content"
@@ -98,15 +99,17 @@ export default function CreateBlogPost() {
             required
           />
         </div>
-        <div>
+        <div className="col-span-2">
           <h2 className="text-xl font-semibold mb-2">Preview</h2>
           <div className="prose max-w-none border p-4 rounded-lg dark:prose-invert">
             <MDXPreview content={content} />
           </div>
         </div>
-        <Button type="submit">
-          Create Post
-        </Button>
+        <div className="flex items-center justify-center col-span-2">
+          <Button type="submit" className="mx-auto">
+            Create Post
+          </Button>
+        </div>
       </form>
     </div>
   )
