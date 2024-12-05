@@ -12,17 +12,17 @@ export default function BlogList() {
   return (
     <div className="max-w-7xl min-h-screen mx-auto px-4 py-8">
       <h1 className="text-2xl md:text-4xl font-bold mb-6 text-center">My Blog Posts</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2  gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-8">
         {allPostsData.map((post, index) => (
           <Card key={index} className="dark:bg-gray-800 dark:border-gray-700 overflow-hidden flex flex-col">
             <CardHeader className="p-0">
-              {/* <Image
-                src={post?.image}
+              <Image
+                src={post?.image || ""}
                 alt={`${post?.title} cover`}
                 width={400}
                 height={200}
                 className="w-full h-48 object-cover"
-              /> */}
+              />
             </CardHeader>
             <CardContent className="p-6 flex-grow">
               <Badge className="mb-2">{post?.category}</Badge>
@@ -31,7 +31,7 @@ export default function BlogList() {
                   {post?.title}
                 </Link>
               </CardTitle>
-              <p className="text-gray-600 dark:text-gray-400 mb-4">{post.excerpt}</p>
+              <p className="text-gray-600 dark:text-gray-400 mb-4">{post.excerpt?.slice(0, 100)}</p>
               <div className="flex items-center text-sm text-gray-500">
                 <Clock className="mr-2 h-4 w-4" />
                 <span>{post?.readTime}</span>

@@ -16,7 +16,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <article className="max-w-2xl mx-auto">
+      <article className="max-w-3xl mx-auto">
         <Image
           src={postData.image}
           alt={`${postData.title} cover`}
@@ -24,7 +24,7 @@ export default async function Post({ params }: { params: { slug: string } }) {
           height={400}
           className="w-full h-64 object-cover rounded-lg mb-6"
         />
-        <h1 className="text-4xl font-bold mb-4">{postData.title}</h1>
+        {/* <h1 className="text-4xl font-bold mb-4">{postData.title}</h1> */}
         <div className="flex items-center justify-between mb-6">
           <Badge>{postData.category}</Badge>
           <div className="flex items-center text-sm text-gray-500">
