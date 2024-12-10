@@ -1,0 +1,189 @@
+---
+title: 'Object-Oriented Programming in Python: Explained from Scratch'
+date: '2024-12-10'
+category: Python
+excerpt: >-
+  Object-Oriented Programming is a programming approach that organizes software
+  design around "objects" - which are instances of classes that combine data and
+  behavior. Think of it like building with Lego blocks, where each block
+  (object) has its own specific properties and capabilities.
+readTime: '7'
+image: >-
+  https://images.pexels.com/photos/270623/pexels-photo-270623.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1
+---
+# Object-Oriented Programming in Python: Explained from Scratch
+
+## What is Object-Oriented Programming (OOP)?
+
+Object-Oriented Programming is a programming approach that organizes software design around "objects" - which are instances of classes that combine data and behavior. Think of it like building with Lego blocks, where each block (object) has its own specific properties and capabilities.
+
+### Key Terminology
+
+#### 1. Class
+A **class** is a blueprint or template for creating objects. It defines the structure and behavior that its objects will have.
+
+Example:
+```python
+class Dog:
+    # This is a class definition - a blueprint for creating dog objects
+    def __init__(self, name, breed):
+        self.name = name  # Property (attribute)
+        self.breed = breed  # Property (attribute)
+    
+    def bark(self):  # Method (behavior)
+        print(f"{self.name} says Woof!")
+
+# Creating objects from the class
+buddy = Dog("Buddy", "Labrador")
+max = Dog("Max", "German Shepherd")
+
+buddy.bark()  # Output: Buddy says Woof!
+max.bark()    # Output: Max says Woof!
+```
+
+#### 2. Object
+An **object** is a specific instance of a class. It's a concrete entity created from the class blueprint.
+
+In the example above, `buddy` and `max` are objects of the `Dog` class.
+
+#### 3. Attributes
+**Attributes** are the data or properties that describe an object.
+
+```python
+class Car:
+    def __init__(self, color, model, year):
+        # These are attributes
+        self.color = color
+        self.model = model
+        self.year = year
+
+my_car = Car("Red", "Tesla", 2023)
+print(my_car.color)  # Output: Red
+```
+
+#### 4. Methods
+**Methods** are functions defined inside a class that describe the behaviors of objects.
+
+```python
+class BankAccount:
+    def __init__(self, balance=0):
+        self.balance = balance
+    
+    # These are methods
+    def deposit(self, amount):
+        self.balance += amount
+        return self.balance
+    
+    def withdraw(self, amount):
+        if amount <= self.balance:
+            self.balance -= amount
+            return self.balance
+        else:
+            print("Insufficient funds")
+
+account = BankAccount(1000)
+account.deposit(500)   # Adds 500 to balance
+account.withdraw(200)  # Subtracts 200 from balance
+```
+
+### Core Principles of OOP
+
+#### 1. Encapsulation
+**Encapsulation** is the concept of bundling data (attributes) and methods that operate on that data within a single unit (class). It also involves restricting direct access to some of an object's components.
+
+```python
+class SecureAccount:
+    def __init__(self):
+        self.__balance = 0  # Private attribute (with double underscore)
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+    
+    def get_balance(self):
+        return self.__balance  # Controlled access to private attribute
+
+account = SecureAccount()
+account.deposit(1000)
+print(account.get_balance())  # 1000
+# print(account.__balance)  # This would raise an error
+```
+
+#### 2. Inheritance
+**Inheritance** allows a class to inherit attributes and methods from another class.
+
+```python
+class Animal:
+    def __init__(self, name):
+        self.name = name
+    
+    def speak(self):
+        print("Some sound")
+
+class Dog(Animal):  # Dog inherits from Animal
+    def speak(self):
+        print(f"{self.name} says Woof!")
+
+class Cat(Animal):
+    def speak(self):
+        print(f"{self.name} says Meow!")
+
+dog = Dog("Buddy")
+cat = Cat("Whiskers")
+
+dog.speak()  # Output: Buddy says Woof!
+cat.speak()  # Output: Whiskers says Meow!
+```
+
+#### 3. Polymorphism
+**Polymorphism** means the ability to use a single method in different ways or for different types.
+
+```python
+class Shape:
+    def area(self):
+        pass
+
+class Rectangle(Shape):
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+    
+    def area(self):
+        return self.width * self.height
+
+class Circle(Shape):
+    def __init__(self, radius):
+        self.radius = radius
+    
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+# Polymorphic behavior
+shapes = [Rectangle(5, 4), Circle(7)]
+for shape in shapes:
+    print(shape.area())  # Different implementations of area()
+```
+
+### Why Use OOP?
+
+1. **Modularity**: Breaking complex problems into smaller, manageable parts
+2. **Reusability**: Creating code that can be easily reused
+3. **Flexibility**: Easily modify and extend existing code
+4. **Security**: Control access to data through encapsulation
+
+### Common Pitfalls to Avoid
+
+1. Creating overly complex class hierarchies
+2. Using inheritance when composition would be better
+3. Not keeping classes focused on a single responsibility
+
+### Practical Tips for Learning OOP
+
+- Start simple: Create basic classes with clear purposes
+- Practice by modeling real-world objects
+- Use meaningful and descriptive names
+- Keep your classes small and focused
+
+## Conclusion
+
+Object-Oriented Programming is a powerful paradigm that helps organize and structure code. By understanding these core concepts, you can write more maintainable, scalable, and readable Python programs.
