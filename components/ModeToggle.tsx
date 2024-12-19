@@ -3,6 +3,8 @@
 import * as React from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import { motion, AnimatePresence } from 'framer-motion';
+
 
 
 export function ModeToggle() {
@@ -11,16 +13,25 @@ export function ModeToggle() {
   console.log(theme, "theme");
 
   return (
-    <>
-      {theme === "light" ? (
-        <button onClick={() => setTheme("dark")} className="bg-transparent">
-          <Moon className="w-5 h-5 text-black" />
-        </button>
-      ) : (
-        <button className="bg-transparent text-white"  onClick={() => setTheme("light")}>
-          <Sun className="w-5 h-5" />
-        </button>
-      )}
-    </>
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      className=" p-2 rounded-full bg-indigo-500 text-white z-50 shadow-lg"
+    >
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={theme}
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 20, opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+        </motion.div>
+      </AnimatePresence>
+    </motion.button>
   );
 }
+
+
