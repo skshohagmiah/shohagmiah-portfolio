@@ -7,6 +7,7 @@ import ProjectsSection from "@/components/ProjectSection";
 import SkillsSection from "@/components/SkillsAndExpertise";
 
 export default function Home() {
+  console.log('test')
   return (
     <div className="">
       <HeroSection />
