@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal, User, Code2, Brain, CircleDot, Sun, Moon, Github, Linkedin, Twitter } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 
 const CodeBlock = ({ title, children, delay }) => {
   const { theme } = useTheme();
@@ -114,6 +115,9 @@ export default function EnhancedHeroSection() {
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8">
+            <div className='flex items-center justify-center'>
+              <Image src={'/me.webp'} width={250} height={250} alt='shohag miah' className='rounded-full shadow-md'/>
+            </div>
             <CodeBlock title="profile.js" delay={0}>
               <div className={isDark ? 'text-gray-300' : 'text-gray-800'}>
                 <span className="text-indigo-400">const</span>{" "}
